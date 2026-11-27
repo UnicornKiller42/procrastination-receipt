@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Procrastination receipt</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="app">
+    <h1>Procrastination receipt</h1>
+    <p class="lede">Write down what you avoided today. The till prices each one and prints a receipt.</p>
+
+    <form id="avoid-form" autocomplete="off">
+      <div class="add-row">
+        <label for="task-input">Add something you avoided</label>
+        <div class="add-controls">
+          <input id="task-input" name="task" type="text" autocomplete="off" enterkeyhint="done">
+          <button type="button" id="add-item">Add item</button>
+        </div>
+      </div>
+
+      <label for="tasks">Today's avoided tasks</label>
+      <textarea id="tasks" name="tasks" rows="8" autocomplete="off" placeholder="answer emails&#10;do laundry"></textarea>
+      <p id="hint" class="hint" role="status" hidden>Add at least one thing you avoided. One per line is perfect.</p>
+      <button type="submit" id="print-receipt">Print receipt</button>
+    </form>
+
+    <div id="slip" class="printer" hidden aria-live="polite">
+      <div class="slot" aria-hidden="true"></div>
+      <div class="mouth">
+        <article id="receipt" class="receipt" aria-label="Avoidance receipt"></article>
+      </div>
+      <button type="button" id="print-paper">Print</button>
+    </div>
+  </main>
+  <script src="receipt.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

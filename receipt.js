@@ -13,6 +13,12 @@
     'Thank you for not doing it.',
     'Please come again tomorrow.',
   ];
+  var KEY = [
+    'GU means guilt units',
+    'min is a made-up time cost',
+    'not how long the task takes',
+    'regret tax is a made-up extra',
+  ];
   var DAYS = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'];
   var MONTHS = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'];
 
@@ -135,6 +141,7 @@
         GU: subtotal.GU + tax.GU,
       },
       barcode: barcodeDigits(items),
+      key: KEY.slice(),
       footer: FOOTER.slice(),
     };
   }
@@ -199,6 +206,10 @@
     });
     lines.push('');
     lines.push(center(receipt.barcode));
+    lines.push('');
+    receipt.key.forEach(function (line) {
+      lines.push(center(line));
+    });
     lines.push('');
     receipt.footer.forEach(function (line) {
       lines.push(center(line));

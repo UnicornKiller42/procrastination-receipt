@@ -181,6 +181,22 @@ test('empty input still builds a receipt and does not throw', () => {
   assert.ok(!/error/i.test(formatReceipt(receipt)));
 });
 
+test('the printed receipt includes a key for its units', () => {
+  const text = formatReceipt(buildReceipt('answer emails\ndo laundry', { now: when }));
+  const totalAt = text.indexOf('TOTAL');
+  const guiltAt = text.indexOf('GU means guilt units');
+  const minutesAt = text.indexOf('min is a made-up time cost');
+  const notRealAt = text.indexOf('not how long the task takes');
+  const taxAt = text.indexOf('regret tax is a made-up extra');
+  const thanksAt = text.indexOf('Thank you for not doing it.');
+  assert.ok(totalAt !== -1);
+  assert.ok(guiltAt > totalAt);
+  assert.ok(minutesAt > guiltAt);
+  assert.ok(notRealAt > minutesAt);
+  assert.ok(taxAt > notRealAt);
+  assert.ok(thanksAt > taxAt);
+});
+
 test('formatReceipt lays out a narrow till slip', () => {
   const receipt = buildReceipt('answer emails\ndo laundry', { now: when });
   const text = formatReceipt(receipt);
@@ -197,6 +213,11 @@ test('formatReceipt lays out a narrow till slip', () => {
     'TOTAL                     26 min',
     '',
     '         1800833200450          ',
+    '',
+    '      GU means guilt units      ',
+    '   min is a made-up time cost   ',
+    '  not how long the task takes   ',
+    ' regret tax is a made-up extra  ',
     '',
     '  Thank you for not doing it.   ',
     '  Please come again tomorrow.   ',

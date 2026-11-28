@@ -259,9 +259,20 @@ textarea:focus-visible {
 }
 
 .barcode-digits,
-.footer {
+.footer,
+.key {
   margin: 0.15rem 0;
   text-align: center;
+}
+
+.key {
+  margin-top: 0.55rem;
+  font-size: 0.78rem;
+  line-height: 1.3;
+}
+
+.key p {
+  margin: 0;
 }
 
 .barcode-digits {

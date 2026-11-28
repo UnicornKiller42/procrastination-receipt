@@ -140,6 +140,15 @@
     digits.textContent = receipt.barcode;
     receiptEl.appendChild(digits);
 
+    var key = document.createElement('div');
+    key.className = 'key';
+    receipt.key.forEach(function (line) {
+      var note = document.createElement('p');
+      note.textContent = line;
+      key.appendChild(note);
+    });
+    receiptEl.appendChild(key);
+
     receipt.footer.forEach(function (line) {
       var footer = document.createElement('p');
       footer.className = 'footer';
